@@ -1,0 +1,80 @@
+{
+   "name": "sxlauncher",
+   "version": "1.0.0",
+   "description": "SxDale Launcher",
+   "productName": "SxLauncher",
+   "main": "main.js",
+   "scripts": {
+      "start": "electron ."
+   },
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/666young/sxlauncher"
+   },
+   "keywords": [
+      "sx",
+      "sxdale",
+      "sxlauncher",
+      "shararam",
+      "шарарам",
+      "dale"
+   ],
+   "build": {
+      "publish": [
+         {
+            "provider": "github",
+            "owner": "666young",
+            "repo": "sxlauncher"
+         }
+      ],
+      "appId": "ru.sxdale",
+      "mac": {
+         "asar": false,
+         "category": "public.app-category.games",
+         "icon": "icons/icon.png"
+      },
+      "linux": {
+         "asar": false,
+         "target": [
+            {
+               "target": "deb",
+               "arch": [
+                  "x64",
+                  "ia32"
+               ]
+            },
+            {
+               "target": "AppImage",
+               "arch": [
+                  "x64",
+                  "ia32"
+               ]
+            }
+         ],
+         "icon": "icons/icon.png"
+      },
+      "win": {
+         "asar": false,
+         "target": [
+            {
+               "target": "nsis",
+               "arch": [
+                  "x64",
+                  "ia32"
+               ]
+            }
+         ],
+         "icon": "icons/icon.ico"
+      }
+   },
+   "author": "youngIve <arsenij.lubimov@yandex.ru> (https://sxdale.ru)",
+   "license": "CC0-1.0",
+   "devDependencies": {
+      "electron": "11.3",
+      "electron-builder": "^22.10.4",
+      "electron-packager": "^17.1.1"
+   },
+   "dependencies": {
+      "electron-updater": "^5.3.0"
+   }
+}
