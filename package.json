@@ -1,11 +1,15 @@
 {
    "name": "sxlauncher",
-   "version": "1.0.0",
+   "version": "1.1.3",
    "description": "SxDale Launcher",
    "productName": "SxLauncher",
    "main": "main.js",
    "scripts": {
-      "start": "electron ."
+      "start": "electron .",
+      "build": "sudo electron-builder --all",
+      "build-win": "sudo electron-builder --win",
+      "build-mac": "sudo electron-builder --mac",
+      "build-linux": "sudo electron-builder --linux"
    },
    "repository": {
       "type": "git",

@@ -43,7 +43,7 @@ case 'linux':
 app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName));
 
 var win
-var pro
+
 app.on('ready', () => {
     createWindow();
 })
@@ -76,7 +76,9 @@ function getIconPath() {
   let iconPath;
   if (process.platform === 'win32') {
     iconPath = path.join(__dirname, 'icons', 'icon.ico');
-  } else if (process.platform === 'darwin' || process.platform === 'linux') {
+  } else if (process.platform === 'darwin') {
+    iconPath = path.join(__dirname, 'icons', 'icon.icns');
+  } else if (process.platform === 'linux') {
     iconPath = path.join(__dirname, 'icons', 'icon.png');
   }
   return iconPath;
@@ -91,32 +93,37 @@ function makeMenu() { // credits to youngIve
     fsmenu = new Menu();
     if (process.platform == 'darwin') {
         fsmenu.append(new MenuItem({
-			label: 'Главная',
-			click: () => {
-			  win.loadURL('https://sxdale.ru');
-			}
-		  },
-		  {
-			label: 'Очистить кэш и куки',
-			click: () => {
-			  clearCache();
-			}
-		  },
-		  {
-			label: 'Полный экран',
-			accelerator: 'CmdOrCtrl+F',
-			click: () => {
-			  win.setFullScreen(!win.isFullScreen());
-			  win.webContents.send('fullscreen', win.isFullScreen());
-			}
-		  },
-		  {
-			label: 'Перезайти',
-			accelerator: 'CmdOrCtrl+R',
-			click: () => {
-			  win.reload();
-			}
-		}));
+            label: "SxLauncher",
+            submenu: [
+				{
+					label: 'Главная',
+					click: () => {
+						win.loadURL('https://sxdale.ru');
+					}
+				},
+				{
+					label: 'Очистить кэш и куки',
+					click: () => {
+						clearCache();
+						clearCookies();
+						win.reload();
+					}
+				},
+				{
+					label: 'Полный экран',
+					click: () => {
+					  win.setFullScreen(!win.isFullScreen());
+					  win.webContents.send('fullscreen', win.isFullScreen());
+					}
+				},
+				{
+					label: 'Перезайти',
+					click: () => {
+					  win.reload();
+					}
+				}
+            ]
+        }));
     } else {
         fsmenu.append(new MenuItem({
             label: 'Главная',
@@ -129,6 +136,7 @@ function makeMenu() { // credits to youngIve
             click: () => {
                 clearCache();
 				clearCookies();
+				win.reload();
             }
         }));
         fsmenu.append(new MenuItem({
@@ -217,3 +225,5 @@ app.on('activate', () => {
 	  createWindow();
   }
 });
+
+
