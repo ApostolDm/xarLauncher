@@ -52,7 +52,7 @@ app.on('ready', () => {
 function createWindow() {
     win = new BrowserWindow
     ({
-    title: "SxLauncher",
+    title: "XarLauncher",
     webPreferences: {
         plugins: true,
         nodeIntegration: false
@@ -63,7 +63,7 @@ function createWindow() {
     });
     makeMenu();
 	
-    win.loadURL('https://sxdale.ru/');
+    win.loadURL('https://xarium.cc/');
     autoUpdater.checkForUpdatesAndNotify();
     Menu.setApplicationMenu(fsmenu);
 	
@@ -86,72 +86,82 @@ function getIconPath() {
 
 // start of menubar part
 
-const aboutMessage = `SxLauncher v${app.getVersion()}
-Created by youngIve with much code provided by Allinol for use with SxDale.`;
+const aboutMessage = `XarLauncher v${app.getVersion()}
+Created by youngive with much code provided by Allinol for use with Xarium.`;
 
 function makeMenu() { // credits to youngIve
     fsmenu = new Menu();
     if (process.platform == 'darwin') {
-        fsmenu.append(new MenuItem({
-            label: "SxLauncher",
+      fsmenu.append(new MenuItem({
+        label: "XarLauncher",
+        submenu: [
+          {
+            label: 'Меню',
             submenu: [
-				{
-					label: 'Главная',
-					click: () => {
-						win.loadURL('https://sxdale.ru');
-					}
-				},
-				{
-					label: 'Очистить кэш и куки',
-					click: () => {
-						clearCache();
-						clearCookies();
-						win.reload();
-					}
-				},
-				{
-					label: 'Полный экран',
-					click: () => {
-					  win.setFullScreen(!win.isFullScreen());
-					  win.webContents.send('fullscreen', win.isFullScreen());
-					}
-				},
-				{
-					label: 'Перезайти',
-					click: () => {
-					  win.reload();
-					}
-				}
+              {
+                label: 'Главная',
+                click: () => {
+                  win.loadURL('https://xarium.cc');
+                }
+              },
+              {
+                label: 'Перезайти',
+                click: () => {
+                  win.reload();
+                }
+              }
             ]
-        }));
-    } else {
-        fsmenu.append(new MenuItem({
-            label: 'Главная',
-            click: () => {
-                win.loadURL('https://sxdale.ru');
-            }
-        }));
-        fsmenu.append(new MenuItem({
+          },
+          {
             label: 'Очистить кэш и куки',
             click: () => {
-                clearCache();
-				clearCookies();
-				win.reload();
+              clearCache();
+              clearCookies();
+              win.reload();
             }
-        }));
-        fsmenu.append(new MenuItem({
+          },
+          {
             label: 'Полный экран',
             click: () => {
-			  win.setFullScreen(!win.isFullScreen());
-			  win.webContents.send('fullscreen', win.isFullScreen());
+              win.setFullScreen(!win.isFullScreen());
+              win.webContents.send('fullscreen', win.isFullScreen());
             }
-        }));
-        fsmenu.append(new MenuItem({
+          }
+        ]
+      }));
+    } else {
+      fsmenu.append(new MenuItem({
+        label: 'Меню',
+        submenu: [
+          {
+            label: 'Главная',
+            click: () => {
+              win.loadURL('https://xarium.cc');
+            }
+          },
+          {
             label: 'Перезайти',
             click: () => {
-			  win.reload();
+              win.reload();
             }
-        }));
+          }
+        ]
+      }));
+      fsmenu.append(new MenuItem({
+        label: 'Очистить кэш и куки',
+        click: () => {
+          clearCache();
+          clearCookies();
+          win.reload();
+        }
+      }));
+      fsmenu.append(new MenuItem({
+        label: 'Полный экран',
+        click: () => {
+          win.setFullScreen(!win.isFullScreen());
+          win.webContents.send('fullscreen', win.isFullScreen());
+        }
+      }));
     }
 }
 
