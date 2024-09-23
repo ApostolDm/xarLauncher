@@ -63,8 +63,8 @@ function createWindow() {
     });
     makeMenu();
 	
-    const userAgent = `XarLauncher/${app.getVersion()}`;
-    win.webContents.userAgent = userAgent;
+    const customUA = ` XarLauncher/${app.getVersion()}`;
+    win.webContents.userAgent += customUA;
     win.loadURL('https://xarium.cc/');
     autoUpdater.checkForUpdatesAndNotify();
     Menu.setApplicationMenu(fsmenu);
@@ -103,8 +103,6 @@ function makeMenu() { // credits to youngIve
               {
                 label: 'Главная',
                 click: () => {
-                  const userAgent = `XarLauncher/${app.getVersion()}`;
-                  win.webContents.userAgent = userAgent;
                   win.loadURL('https://xarium.cc');
                 }
               },
@@ -140,8 +138,6 @@ function makeMenu() { // credits to youngIve
           {
             label: 'Главная',
             click: () => {
-              const userAgent = `XarLauncher/${app.getVersion()}`;
-              win.webContents.userAgent = userAgent;
               win.loadURL('https://xarium.cc');
             }
           },
