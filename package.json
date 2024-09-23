@@ -1,15 +1,15 @@
 {
    "name": "xarlauncher",
-   "version": "1.2.0",
+   "version": "1.2.2",
    "description": "Xarium Launcher",
    "productName": "XarLauncher",
    "main": "main.js",
    "scripts": {
       "start": "electron .",
-      "build": "sudo electron-builder --all",
-      "build-win": "sudo electron-builder --win",
-      "build-mac": "sudo electron-builder --mac",
-      "build-linux": "sudo electron-builder --linux"
+      "build": "sudo electron-builder -w -m -l",
+      "build-win": "sudo electron-builder -w",
+      "build-mac": "sudo electron-builder -m",
+      "build-linux": "sudo electron-builder -l"
    },
    "repository": {
       "type": "git",
