@@ -6,10 +6,10 @@
    "main": "main.js",
    "scripts": {
       "start": "electron .",
-      "build": "sudo electron-builder -w -m -l",
-      "build-win": "sudo electron-builder -w",
-      "build-mac": "sudo electron-builder -m",
-      "build-linux": "sudo electron-builder -l"
+      "build": "electron-builder -w -m -l",
+      "build-win": "electron-builder -w",
+      "build-mac": "electron-builder -m",
+      "build-linux": "electron-builder -l"
    },
    "repository": {
       "type": "git",
