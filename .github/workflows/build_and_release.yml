@@ -23,6 +23,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      # костыль: electron-builder ищет /usr/bin/python, а его нет
+      - name: Add python symlink (for macOS)
+        if: runner.os == 'macOS'
+        run: sudo ln -s $(which python3) /usr/local/bin/python || true
+
       - name: Build macOS app
         if: runner.os == 'macOS'
         run: yarn build-mac
