@@ -79,7 +79,7 @@
          "icon": "icons/icon.ico"
       }
    },
-   "author": "youngive",
+   "author": "apostol  <apostol@yandex.com>",
    "license": "CC0-1.0",
    "devDependencies": {
       "electron": "11.3",
