@@ -65,7 +65,7 @@ function createWindow() {
 	
     const customUA = ` XarLauncher/${app.getVersion()}`;
     win.webContents.userAgent += customUA;
-    win.loadURL('https://xarium.cc/');
+    win.loadURL('http://83.222.25.46/');
     autoUpdater.checkForUpdatesAndNotify();
     Menu.setApplicationMenu(fsmenu);
 	
@@ -103,7 +103,7 @@ function makeMenu() { // credits to youngIve
               {
                 label: 'Главная',
                 click: () => {
-                  win.loadURL('https://xarium.cc');
+                  win.loadURL('http://83.222.25.46/');
                 }
               },
               {
@@ -138,7 +138,7 @@ function makeMenu() { // credits to youngIve
           {
             label: 'Главная',
             click: () => {
-              win.loadURL('https://xarium.cc');
+              win.loadURL('http://83.222.25.46/');
             }
           },
           {
