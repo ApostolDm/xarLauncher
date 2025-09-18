@@ -23,11 +23,17 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Install dmg-license (only on macOS)
-        if: matrix.os == 'macos-latest'
-        run: yarn add dmg-license --dev
+      - name: Build Electron app (per OS)
+        run: |
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            yarn build-mac
+          elif [[ "$RUNNER_OS" == "Windows" ]]; then
+            yarn build-win
+          else
+            yarn build-linux
+          fi
 
-      - name: Build/release Electron app
+      - name: Release artifacts
         uses: samuelmeuli/action-electron-builder@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
