@@ -2,6 +2,9 @@ name: Build/release
 
 on: 
   workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   release:
@@ -9,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-2022]
 
     steps:
       - name: Check out Git repository
@@ -23,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      # костыль: electron-builder ищет /usr/bin/python, а его нет
+      # костыль: electron-builder ищет /usr/bin/python на macOS
       - name: Add python symlink (for macOS)
         if: runner.os == 'macOS'
         run: sudo ln -s $(which python3) /usr/local/bin/python || true
@@ -46,8 +49,18 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # ✅ Автопубликация релиза при запуске по тегу
       - name: Release artifacts
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: samuelmeuli/action-electron-builder@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          release: true
+
+      # ✅ Загрузка артефактов при обычном запуске
+      - name: Upload build artifacts
+        if: startsWith(github.ref, 'refs/tags/v') == false
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-${{ runner.os }}
+          path: dist/**
