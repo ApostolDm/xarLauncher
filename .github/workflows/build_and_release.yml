@@ -26,14 +26,20 @@ jobs:
       - name: Build macOS app
         if: runner.os == 'macOS'
         run: yarn build-mac
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Windows app
         if: runner.os == 'Windows'
         run: yarn build-win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Linux app
         if: runner.os == 'Linux'
         run: yarn build-linux
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release artifacts
         uses: samuelmeuli/action-electron-builder@v1
