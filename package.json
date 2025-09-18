@@ -79,7 +79,10 @@
          "icon": "icons/icon.ico"
       }
    },
-   "author": "apostol  <apostol@yandex.com>",
+   "author": {
+      "name": "apostol",
+      "email": "apostol@yandex.com"
+   },
    "license": "CC0-1.0",
    "devDependencies": {
       "electron": "11.3",
