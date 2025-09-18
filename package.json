@@ -79,7 +79,7 @@
          "icon": "icons/icon.ico"
       }
    },
-   "author": "youngive <arsenij.lubimovv@gmail.com> (https://xarium.cc)",
+   "author": "youngive",
    "license": "CC0-1.0",
    "devDependencies": {
       "electron": "11.3",
