@@ -23,15 +23,17 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build Electron app (per OS)
-        run: |
-          if [[ "$RUNNER_OS" == "macOS" ]]; then
-            yarn build-mac
-          elif [[ "$RUNNER_OS" == "Windows" ]]; then
-            yarn build-win
-          else
-            yarn build-linux
-          fi
+      - name: Build macOS app
+        if: runner.os == 'macOS'
+        run: yarn build-mac
+
+      - name: Build Windows app
+        if: runner.os == 'Windows'
+        run: yarn build-win
+
+      - name: Build Linux app
+        if: runner.os == 'Linux'
+        run: yarn build-linux
 
       - name: Release artifacts
         uses: samuelmeuli/action-electron-builder@v1
